@@ -1,11 +1,4 @@
-mod yuque;
-mod user;
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}
+pub mod yuque;
+pub mod user;
+pub mod group;
+pub mod serializer;

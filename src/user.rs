@@ -1,33 +1,14 @@
-use std::fmt::Display;
-
-use serde::{Deserialize, Serialize};
-use anyhow::Result;
-
+use crate::serializer::{UserSerializer, APIResponse};
 use crate::yuque::Yuque;
-
-#[derive(Debug, Deserialize, Serialize, Default)]
-pub struct UserSerializer {
-    pub id: u64,
-    #[serde(rename(deserialize = "type"))]
-    pub user_type: String,
-    pub login: String,
-    pub name: String,
-    pub avatar_url: String,
-    pub created_at: String,
-    pub updated_at: String,
-}
-
-#[derive(Debug, Deserialize, Serialize, Default)]
-pub struct GetUserResponse {
-    pub data: UserSerializer,
-}
+use anyhow::Result;
+use std::fmt::Display;
 
 impl Yuque {
     pub async fn get_auth_user(&self) -> Result<UserSerializer> {
         let api = Yuque::build_api("/user", None);
         let resp = self.client.get(api).send().await?;
         if resp.status().is_success() {
-            let resp = resp.json::<GetUserResponse>().await?;
+            let resp = resp.json::<APIResponse<UserSerializer>>().await?;
             Ok(resp.data)
         } else {
             Err(anyhow::anyhow!("{} {}", resp.status(), resp.text().await?))
@@ -39,7 +20,7 @@ impl Yuque {
         let api = Yuque::build_api(&endpoint, None);
         let resp = self.client.get(api).send().await?;
         if resp.status().is_success() {
-            let resp = resp.json::<GetUserResponse>().await?;
+            let resp = resp.json::<APIResponse<UserSerializer>>().await?;
             Ok(resp.data)
         } else {
             Err(anyhow::anyhow!("{} {}", resp.status(), resp.text().await?))
@@ -53,17 +34,17 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_auth_user() {
-        let token = option_env!("YUQUE_TOKEN").unwrap_or_default().to_string();
+        let token = option_env!("YUQUE_TOKEN").unwrap_or_default();
         let yuque = Yuque::new(token).unwrap();
         let user = yuque.get_auth_user().await.unwrap();
-        println!("{:?}", user)
+        assert_eq!(user.name, "K8sCat");
     }
 
     #[tokio::test]
     async fn test_get_user() {
-        let token = option_env!("YUQUE_TOKEN").unwrap_or_default().to_string();
+        let token = option_env!("YUQUE_TOKEN").unwrap_or_default();
         let yuque = Yuque::new(token).unwrap();
         let user = yuque.get_user(565457).await.unwrap();
-        println!("{:?}", user)
+        assert_eq!(user.name, "K8sCat");
     }
 }

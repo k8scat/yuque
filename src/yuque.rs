@@ -10,7 +10,7 @@ pub struct Yuque {
 }
 
 impl Yuque {
-    pub fn new(token: String) -> Result<Yuque> {
+    pub fn new(token: &str) -> Result<Yuque> {
         let mut headers = HeaderMap::new();
         headers.insert("X-Auth-Token", token.parse().unwrap());
         let client = Client::builder()

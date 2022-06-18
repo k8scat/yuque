@@ -9,6 +9,15 @@ Yuque Client SDK in Rust.
 - [ ] Repo
 - [ ] Doc
 
+## Usage
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+yuque = "0.1.1"
+```
+
 ## Unit tests
 
 ```bash

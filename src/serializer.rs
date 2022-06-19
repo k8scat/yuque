@@ -96,13 +96,27 @@ pub struct BookSerializer {
     pub slug: String,
     pub name: String,
     pub user_id: u32,
-    pub description: String,
-    pub creator_id: u32,
+    #[serde(default)]
+    pub description: Option<String>,
+    #[serde(default)]
+    pub creator_id: Option<u32>,
     pub public: u8,
     pub items_count: u32,
     pub likes_count: u32,
     pub watches_count: u32,
-    pub content_updated_at: String,
-    pub namespace: String,
-    pub user: UserSerializer,
+    #[serde(default)]
+    pub content_updated_at: Option<String>,
+    #[serde(default)]
+    pub namespace: Option<String>,
+    #[serde(default)]
+    pub user: Option<UserSerializer>,
+
+    #[serde(default)]
+    pub toc: Option<String>,
+    #[serde(default)]
+    pub toc_yml: Option<String>,
+    #[serde(default)]
+    pub pinned_at: Option<String>,
+    #[serde(default)]
+    pub archived_at: Option<String>,
 }

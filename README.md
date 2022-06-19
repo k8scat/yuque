@@ -6,7 +6,7 @@ Yuque Client SDK in Rust.
 
 - [x] User
 - [x] Group
-- [ ] Repo
+- [x] Repo
 - [ ] Doc
 
 ## Usage

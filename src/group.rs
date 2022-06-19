@@ -177,7 +177,7 @@ impl Yuque {
 #[cfg(test)]
 mod tests {
     use crate::yuque::Yuque;
-    use rand::Rng;
+    use crate::utils::gen_rand_str;
 
     #[tokio::test]
     async fn test_list_user_groups() {
@@ -251,18 +251,5 @@ mod tests {
         assert_eq!(group.description.unwrap_or_default(), rand_str);
 
         yuque.delete_group(&group.object.id).await.unwrap();
-    }
-
-    const CHARSET: &[u8] = b"abcdefghijklmnopqrstuvwxyz";
-    const PASSWORD_LEN: usize = 10;
-
-    fn gen_rand_str() -> String {
-        let mut rng = rand::thread_rng();
-        (0..PASSWORD_LEN)
-            .map(|_| {
-                let idx = rng.gen_range(0..CHARSET.len());
-                CHARSET[idx] as char
-            })
-            .collect()
     }
 }

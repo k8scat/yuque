@@ -2,12 +2,12 @@
 
 Yuque Client SDK in Rust.
 
-## WIP
+## Support
 
 - [x] User
 - [x] Group
 - [x] Repo
-- [ ] Doc
+- [x] Doc
 
 ## Usage
 
@@ -15,7 +15,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-yuque = "0.1.2"
+yuque = "0.1.3"
 ```
 
 ## Unit tests

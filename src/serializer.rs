@@ -120,3 +120,60 @@ pub struct BookSerializer {
     #[serde(default)]
     pub archived_at: Option<String>,
 }
+
+#[derive(Debug, Deserialize, Default)]
+pub struct DocSerializer {
+    #[serde(flatten)]
+    pub object: Object,
+    pub slug: String,
+    pub title: String,
+    #[serde(default)]
+    pub description: Option<String>,
+    pub user_id: u32,
+    pub book_id: u32,
+    pub format: String,
+    pub public: u8,
+    pub status: u8,
+    pub view_status: u8,
+    pub read_status: u8,
+    #[serde(default)]
+    pub likes_count: Option<u32>,
+    #[serde(default)]
+    pub read_count: Option<u32>,
+    #[serde(default)]
+    pub comments_count: Option<u32>,
+    pub content_updated_at: String,
+    #[serde(default)]
+    pub published_at: Option<String>,
+    #[serde(default)]
+    pub first_published_at: Option<String>,
+    #[serde(default)]
+    pub draft_version: Option<u16>,
+    #[serde(default)]
+    pub last_editor_id: Option<u32>,
+    pub word_count: u32,
+    #[serde(default)]
+    pub cover: Option<String>,
+    #[serde(default)]
+    pub custom_description: Option<String>,
+    #[serde(default)]
+    pub last_editor: Option<UserSerializer>,
+    #[serde(default)]
+    pub book: Option<BookSerializer>,
+    #[serde(default)]
+    pub hits: Option<u32>,
+    #[serde(default)]
+    pub creator: Option<UserSerializer>,
+    #[serde(default)]
+    pub body: Option<String>,
+    #[serde(default)]
+    pub body_draft: Option<String>,
+    #[serde(default)]
+    pub body_html: Option<String>,
+    #[serde(default)]
+    pub body_lake: Option<String>,
+    #[serde(default)]
+    pub body_draft_lake: Option<String>,
+    #[serde(default)]
+    pub deleted_at: Option<String>,
+}

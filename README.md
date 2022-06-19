@@ -15,7 +15,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-yuque = "0.1.1"
+yuque = "0.1.2"
 ```
 
 ## Unit tests
